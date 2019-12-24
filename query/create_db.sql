@@ -44,7 +44,7 @@ insert into ref_course_types (course_type_description) values
 CREATE TABLE menu_courses(
    menu_id INTEGER,
    course_number INTEGER,
-   course_id TEXT NOT NULL,
+   couse_type_code TEXT NOT NULL,
    PRIMARY KEY (menu_id, course_number),
    FOREIGN KEY (menu_id) 
       REFERENCES menus (menu_id) 
@@ -54,8 +54,8 @@ CREATE TABLE menu_courses(
       REFERENCES course_recipes (course_number) 
          ON DELETE CASCADE 
          ON UPDATE NO ACTION
-   FOREIGN KEY (course_id) 
-      REFERENCES ref_course_types (course_id) 
+   FOREIGN KEY (couse_type_code) 
+      REFERENCES ref_course_types (couse_type_code) 
          ON DELETE CASCADE 
          ON UPDATE NO ACTION
 );
@@ -68,14 +68,15 @@ insert into menu_courses values (223372036, 1, 42949);
 
 CREATE TABLE ref_dish_elements (
     dish_element_code INTEGER PRIMARY KEY AUTOINCREMENT,
-    course_type_description TEXT NOT NULL
+    dish_element_description TEXT NOT NULL
 );
 
-insert into ref_dish_elements values (4398,'Protein');
+insert into ref_dish_elements values (4398,'Vegetarian');
 
-insert into ref_dish_elements (course_type_description) values
+insert into ref_dish_elements (dish_element_description) values
     ('Garnish'),
-    ('Sauce');
+    ('Sauce'),
+    ('Protein');
     
 
 ------------------------------------------------------------------------
