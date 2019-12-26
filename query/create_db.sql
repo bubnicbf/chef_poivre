@@ -89,7 +89,7 @@ CREATE TABLE course_recipes(
    recipe_id INTEGER NOT NULL,
    PRIMARY KEY (course_recipe_id, menu_id, course_number),
    FOREIGN KEY (menu_id) 
-      REFERENCES menus (menu_id) 
+      REFERENCES menu_courses (menu_id) 
          ON DELETE CASCADE 
          ON UPDATE NO ACTION,
    FOREIGN KEY (course_number) 
@@ -188,7 +188,7 @@ CREATE TABLE recipes_step_ingredients(
 );
 
 
-insert into recipes_step_ingredients values (4651, 1, 53022, '1 large shallot');
+insert into recipes_step_ingredients values (4651, 1, 53022, '1 large');
 
 
 ------------------------------------------------------------------------
