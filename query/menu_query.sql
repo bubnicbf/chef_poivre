@@ -35,5 +35,6 @@ left join ingredients j
     on i.ingredient_id = j.ingredient_id
 left join ref_ingredient_types k
     on j.ingredient_type_code = k.ingredient_type_code
+where g.recipe_name = 'Tomato Mushroom Risotto'
 ;
 

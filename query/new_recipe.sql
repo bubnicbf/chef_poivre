@@ -72,6 +72,7 @@ select
 from recipe_steps a
 left join recipes b
     on a.recipe_id = b.recipe_id
+where b.recipe_name = 'Tomato Mushroom Risotto'
 ;
 
 
@@ -80,7 +81,7 @@ select *
 from ingredients a
 left join ref_ingredient_types b
     on a.ingredient_type_code = b.ingredient_type_code
-where ingredient_name like ('%olive%')
+where ingredient_name like ('%olive oil%')
 ;
 
 
@@ -94,18 +95,44 @@ select ingredient_type_code, 'Olive Oil'
 from ref_ingredient_types 
 where ingredient_type_description = 'Packed with amazing fresh nutty or buttery, somewhat bitter flavor and pungent aroma';
 
--- quick & dirty version is to just enter '0' as the ingredient_type_code
-insert into ingredients (ingredient_type_code, ingredient_name) values
-    (0, 'Baby portabella mushrooms'),
-    (0, 'Arborio rice'),
-    (0, 'Dry white wine'),
-    (0, 'Chicken stock'),
-    (0, 'Plum tomatoes'),
-    (0, 'Fresh basil'),
-    (0, 'Fresh chives'),
-    (0, 'Mascarpone cheese'),
-    (0, 'Grated parmesan cheese'),
-    (0, 'Salt'),
-    (0, 'Black pepper')
+
+-- Link the recipe steps with the ingredients and specify amounts.
+
+select *
+from recipes_step_ingredients a
+left join recipes b
+    on a.recipe_id = b.recipe_id
 ;
 
+
+insert into recipes_step_ingredients (recipe_id, step_number, ingredient_id, amount_required)
+select 4651, 1, ingredient_id, '1 large' from ingredients where ingredient_name = 'Olive oil'
+union all
+select 4651, 1, ingredient_id, '4 Tbsp' from ingredients where ingredient_name = 'Shallots'
+union all
+select 4651, 2, ingredient_id, '8 oz.' from ingredients where ingredient_name = 'Baby portobello mushrooms'
+union all
+select 4651, 3, ingredient_id, '10 oz.' from ingredients where ingredient_name = 'Arborio rice'
+union all
+select 4651, 4, ingredient_id, '1/2 c.' from ingredients where ingredient_name = 'Dry white wine'
+union all
+select 4651, 5, ingredient_id, '4 c.' from ingredients where ingredient_name = 'Low sodium chicken broth'
+union all
+select 4651, 6, ingredient_id, '4 c.' from ingredients where ingredient_name = 'Low sodium chicken broth'
+union all
+select 4651, 7, ingredient_id, '8 oz.' from ingredients where ingredient_name = 'Plum tomatoes'
+union all
+select 4651, 7, ingredient_id, '1 Tbsp' from ingredients where ingredient_name = 'Basil'
+union all
+select 4651, 7, ingredient_id, '1 Tbsp' from ingredients where ingredient_name = 'Fresh chives'
+union all
+select 4651, 8, ingredient_id, 'To taste' from ingredients where ingredient_name = 'Sea salt'
+union all
+select 4651, 8, ingredient_id, 'To taste' from ingredients where ingredient_name = 'Ground black pepper'
+union all
+select 4651, 8, ingredient_id, '2 Tbsp' from ingredients where ingredient_name = 'Mascarpone'
+union all
+select 4651, 8, ingredient_id, '3 Tbsp' from ingredients where ingredient_name = 'Freshly grated parmesan'
+union all
+select 4651, 9, ingredient_id, 'Garnish' from ingredients where ingredient_name = 'Freshly grated parmesan'
+;

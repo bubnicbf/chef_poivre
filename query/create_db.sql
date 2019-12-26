@@ -162,7 +162,7 @@ CREATE TABLE ingredients(
 );
 
 
-insert into ingredients values (53022, 1103, 'Shallot');
+insert into ingredients values (53022, 0, "1% low-fat buttermilk");
 
 
 ------------------------------------------------------------------------
